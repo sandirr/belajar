@@ -1,0 +1,136 @@
+/* Dasar */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+img { max-width: 100%; display: block; }
+:root{
+  --bg: #000;
+  --surface: #121a2b;
+  --surface-2: #1a2540;
+  --text: #e6edf6;
+  --muted: #a8b3c6;
+  --primary: #5aa5ff;
+  --primary-600: #378df7;
+  --ring: rgba(90,165,255,.35);
+  --radius: 16px;
+  --container: clamp(16px, 6vw, 64px);
+  --shadow: 0 8px 30px rgba(0,0,0,.25);
+  --shadow-soft: 0 4px 16px rgba(0,0,0,.18);
+  --gap: 20px;
+}
+
+body{
+  font-family: system-ui;
+  line-height: 1.6;
+  color: var(--text);
+  background: radial-gradient(1200px 800px at 20% -10%, #18223a 0%, transparent 60%), var(--bg);
+}
+
+/* Link skip untuk aksesibilitas */
+.skip-link{
+  position: absolute; left: -9999px; top: 0;
+}
+.skip-link:focus{
+  left: 16px; top: 16px; background: var(--surface); color: var(--text);
+  padding: .5rem .75rem; border-radius: 8px; outline: 2px solid var(--primary);
+}
+
+/* Header */
+.site-header{
+  padding: 32px var(--container) 16px;
+  max-width: 1100px; margin: 0 auto;
+}
+.site-header h1{ margin: 0 0 6px; font-size: clamp(26px, 3vw, 40px); }
+.subtitle{ color: var(--muted); margin: 0 0 12px; }
+.subtitle a{ color: var(--primary); text-decoration: none; }
+.subtitle a:hover{ text-decoration: underline; }
+.nav{
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+.nav a{
+  color: var(--muted); text-decoration: none; font-weight: 600;
+  padding: 8px 12px; border-radius: 10px;
+}
+.nav a:hover{ color: var(--text); background: #1a2540; }
+
+/* Layout utama: FLEX saja (tanpa grid & tanpa media) */
+.profile{
+  display: flex;
+  gap: var(--gap);
+  flex-wrap: wrap;          /* agar tetap nyaman di layar kecil tanpa media query */
+  align-items: flex-start;
+  padding: 16px var(--container) 0;
+  max-width: 1100px; margin: 0 auto;
+}
+
+/* ASIDE (foto) */
+.profile-aside{
+  flex: 0 0 240px;          /* lebar “tetap” 240px, boleh menyusut jika perlu */
+  max-width: 100%;
+}
+.profile-aside figure{ margin: 0; }
+.profile-aside img{
+  width: 100%; height: auto; border-radius: 14px; border: 1px solid #263a68; background: #223055;
+  box-shadow: var(--shadow-soft);
+}
+.profile-aside figcaption{
+  text-align: center; color: var(--muted); margin-top: 8px; font-size: 14px;
+}
+
+/* MAIN */
+.profile-main{
+  flex: 1 1 320px;          /* area konten fleksibel, minimal 320px */
+  min-width: 280px;
+}
+.profile-main section{
+  background: var(--surface); border: 1px solid #213056; border-radius: var(--radius);
+  padding: 18px; margin-bottom: var(--gap); box-shadow: var(--shadow-soft);
+}
+.profile-main h2{ margin: 0 0 6px; font-size: clamp(20px, 2.2vw, 28px); }
+
+/* Checklist */
+.checklist{ list-style: none; padding-left: 0; margin: 8px 0 0; }
+.checklist li{ position: relative; padding-left: 26px; color: var(--muted); margin: 8px 0; }
+.checklist li::before{ content: "✔"; position: absolute; left: 0; top: 0; color: #6cd68a; }
+
+/* Tags keahlian (pakai FLEX) */
+.tags{ list-style: none; padding-left: 0; margin: 8px 0 0;
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.tags li{
+  padding: 8px 12px; border-radius: 999px; background: var(--surface-2);
+  border: 1px solid #2a3b63; color: var(--text); font-weight: 600; font-size: 14px;
+}
+
+/* Kontak (pakai FLEX) */
+.contact-list{ margin: 8px 0 0; }
+.contact-list .row{
+  display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+  padding: 6px 0; border-bottom: 1px dashed #23345e;
+}
+.contact-list .row:last-child{ border-bottom: 0; }
+.contact-list dt{ width: 120px; font-weight: 700; color: var(--text); }
+.contact-list dd{ margin: 0; color: var(--muted); }
+.contact-list a{ color: var(--primary); text-decoration: none; }
+.contact-list a:hover{ text-decoration: underline; }
+
+/* Tombol */
+.cta-wrap{ display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+.btn{
+  display: inline-block; text-decoration: none; font-weight: 700;
+  background: var(--primary); color: #0b1220; padding: 10px 14px;
+  border-radius: 12px; border: 1px solid var(--primary-600); box-shadow: var(--shadow-soft);
+}
+.btn:hover{ background: var(--primary-600); }
+.btn.ghost{ background: transparent; color: var(--text); border: 1px solid #2a3b63; }
+.btn.ghost:hover{ background: #1a2540; }
+
+/* Footer */
+.site-footer{
+  max-width: 1100px; margin: 24px auto 48px; padding: 0 var(--container);
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  color: var(--muted);
+}
+.to-top{
+  color: var(--muted); text-decoration: none; border: 1px solid #25365f; padding: 6px 10px; border-radius: 10px;
+}
+.to-top:hover{ background: #1a2540; color: var(--text); }

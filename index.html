@@ -441,6 +441,55 @@
       </div>
     </section>
 
+    <section class="slide p-10">
+      <h2 class="text-4xl font-bold mb-6">Satuan Ukuran pada CSS</h2>
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-2xl font-semibold mb-3">Absolute Units</h3>
+          <ul class="list-disc list-inside space-y-2 text-lg">
+            <li><code>px</code> — piksel (paling umum dipakai).</li>
+            <li><code>pt</code> — points (dipakai pada print).</li>
+            <li><code>cm</code>, <code>mm</code>, <code>in</code> — ukuran fisik (jarang dipakai di web).</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-2xl font-semibold mb-3">Relative Units</h3>
+          <ul class="list-disc list-inside space-y-2 text-lg">
+            <li><code>%</code> — relatif terhadap parent.</li>
+            <li><code>em</code> — relatif ke ukuran font parent.</li>
+            <li><code>rem</code> — relatif ke ukuran font root (<code>html</code>).</li>
+            <li><code>vh</code>, <code>vw</code> — relatif ke tinggi/lebar viewport.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-6 bg-slate-800/60 border border-slate-700 rounded-2xl p-4">
+        <pre class="overflow-auto text-sm"><code>h1 { font-size: 2rem; }   /* 2x font-size root */
+p  { width: 80%; }        /* 80% dari parent */
+.box { height: 50vh; }    /* setengah tinggi layar */</code></pre>
+      </div>
+    </section>
+
+    <section class="slide p-10">
+      <h2 class="text-4xl font-bold mb-6">Media Query — Responsif</h2>
+      <div class="grid lg:grid-cols-2 gap-8 items-start">
+        <div>
+          <p class="text-lg">Media query memungkinkan kita menyesuaikan gaya berdasarkan <em>ukuran layar</em>, orientasi, atau media (print/screen).</p>
+          <ul class="list-disc list-inside mt-4 space-y-2 text-lg">
+            <li><code>@media (max-width: 600px)</code> — untuk layar kecil (&lt;=600px).</li>
+            <li><code>@media (min-width: 768px)</code> — untuk layar tablet ke atas.</li>
+          </ul>
+        </div>
+        <div class="bg-slate-800/60 border border-slate-700 rounded-2xl p-4">
+          <pre class="overflow-auto text-sm"><code>/* Contoh: ubah warna jika layar kecil */
+body { background: white; }
+@media (max-width: 600px) {
+  body { background: lightblue; }
+}</code></pre>
+          <p class="mt-3 text-slate-300 text-sm">→ Saat lebar layar ≤ 600px, background jadi biru muda.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- 16. Flexbox -->
     <section class="slide p-10">
       <h2 class="text-4xl font-bold mb-6">Flexbox — Layout Fleksibel</h2>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Pribadi | Nama Siswa</title>
+    <link rel="icon" href="image/fb.webp" />
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+
+        :root{
+            --bg: #18223a;
+            --surface: #121a2b;
+            --surface-2: #1a2540;
+            --text: #e6edf6;
+            --muted: #a8b3c6;
+            --primary: #5aa5ff;
+            --primary-600: #378df7;
+            --ring: rgba(90,165,255,.35);
+            --radius: 16px;
+            --container: clamp(16px, 6vw, 64px);
+            --shadow: 0 8px 30px rgba(0,0,0,.25);
+            --shadow-soft: 0 4px 16px rgba(0,0,0,.18);
+            --gap: 20px;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: system-ui;
+        }
+
+        header{
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        header p {
+            font-weight: bold;
+            margin-top: 4px;
+        }
+
+        nav {
+            margin-top: 24px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            margin-right: 16px;
+        }
+
+        .konten {
+            display: flex;
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        aside img {
+            border-radius: 25px;
+        }
+
+        aside figcaption {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        footer{
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        section {
+            background-color: var(--surface);
+            margin-bottom: 32px;
+            padding: 32px;
+            border-radius: 25px;
+            border: 1px solid #213056;
+        }
+
+        section h2{
+            margin-bottom: 8px;
+        }
+
+        .keahlian {
+            display: flex;
+            gap: 12px;
+        }
+
+        .keahlian li {
+            background-color: var(--surface-2);
+            padding: 8px 16px;
+            border: 1px solid #213056;
+            border-radius: 25px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        .contact {
+            background-color: var(--primary);
+            outline: none;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 16px;
+        }
+
+
+        @media (max-width: 768px) {
+            .konten {
+                flex-direction: column;
+            }
+
+            aside {
+                text-align: center;
+                margin-bottom: 24px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Nama Siswa</h1>
+        <p>Halo, saya adalah seorang siswa yang sedang belajar HTML dasar.</p>
+        <p>Kelas 12 - SMA Islam Athirah</p>
+
+        <nav>
+            <a href="#">Tentang</a>
+            <a href="#">Keahlian</a>
+            <a href="#">Kontak</a>
+        </nav>
+    </header>
+
+    <div class="konten">
+        <aside>
+            <img src="https://img.lovepik.com/png/20231122/graduating-student-icon-abstract-illustration-vector-lineal-icon-graduate-student_663259_wh860.png" alt="Foto Profil Nama Siswa" width="200" height="200">
+            <figcaption>Nama Siswa</figcaption>
+        </aside>
+    
+        <main>
+            <section>
+                <h2>Tentang Saya</h2>
+                <p>
+                    Saya adalah seorang siswa yang sedang belajar HTML dasar. Halaman ini dibuat sesuai materi: struktur HTML semantik dan styling dengan CSS (Flexbox) tanpa framework.
+                </p>
+            </section>
+    
+            <section>
+                <h2>Keahlian</h2>
+                <ul type="none" class="keahlian">
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                </ul>
+            </section>
+    
+            <section>
+                <h2>Kontak</h2>
+                <table>
+                   <tbody>
+                      <tr>
+                        <td>Email</td>
+                        <td>andi@contoh.id</td>
+                      </tr>
+                      <tr>
+                        <td>Lokasi</td>
+                        <td>Makassar</td>
+                      </tr>
+                   </tbody>
+                </table>
+    
+                <button class="contact">Hubungi Saya</button>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 - Andi Irsandi R</p>
+    </footer>
+</body>
+</html>

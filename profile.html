@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profil — Andi Irsandi R.</title>
+  <meta name="description" content="Profil sederhana Andi Irsandi R. menggunakan HTML semantik dan Flexbox.">
+  <link rel="stylesheet" href="style/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#konten-utama">Lewati ke konten utama</a>
+
+  <header class="site-header" role="banner">
+    <h1>Andi Irsandi R.</h1>
+    <p class="subtitle">
+      Lulusan <strong>Teknik Informatika — UIN Alauddin Makassar</strong><br />
+      Software Engineer di <a href="https://healthsoft.nl" target="_blank" rel="noopener noreferrer">Healthsoft B.V</a>
+    </p>
+    <nav aria-label="Navigasi utama" class="nav">
+      <a href="#tentang">Tentang</a>
+      <a href="#keahlian">Keahlian</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </header>
+
+  <!-- Tata letak utama: aside (foto) + main (konten) -->
+  <div class="profile" id="konten-utama" role="main">
+    <aside class="profile-aside" aria-labelledby="foto-profil">
+      <figure>
+        <img
+          src="https://media.licdn.com/dms/image/v2/C5603AQEtkTdIyUsy6Q/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1618974268017?e=1760572800&v=beta&t=KgYVDtCWFRs4iJ5vCx6Q-arwtywfkuBQoa-J6-9W9I0"
+          alt="Foto profil Andi Irsandi R."
+          width="220" height="220"
+          id="foto-profil"
+          loading="eager"
+        />
+        <figcaption>Andi Irsandi R.</figcaption>
+      </figure>
+    </aside>
+
+    <main class="profile-main">
+      <section id="tentang" aria-labelledby="judul-tentang">
+        <h2 id="judul-tentang">Tentang Saya</h2>
+        <p>
+          Saya Software Engineer yang fokus pada pengembangan web & mobile.
+          Halaman ini dibuat sesuai materi: struktur <em>HTML semantik</em> dan styling dengan
+          <strong>CSS (Flexbox)</strong> tanpa framework.
+        </p>
+        <ul class="checklist">
+          <li>Menggunakan elemen semantik (<code>header</code>, <code>main</code>, <code>section</code>, <code>aside</code>, <code>footer</code>)</li>
+          <li>Foto diletakkan di <strong>aside</strong></li>
+          <li>Layout fleksibel hanya dengan <strong>Flexbox</strong> (tanpa grid & tanpa media query)</li>
+        </ul>
+      </section>
+
+      <section id="keahlian" aria-labelledby="judul-keahlian">
+        <h2 id="judul-keahlian">Keahlian</h2>
+        <ul class="tags" aria-label="Daftar keahlian">
+          <li>HTML</li><li>CSS</li><li>JavaScript</li>
+          <li>React</li><li>React Native</li>
+          <li>Laravel</li><li>Oracle (OCI8)</li>
+          <li>REST API</li><li>UI/UX</li>
+        </ul>
+      </section>
+
+      <section id="kontak" aria-labelledby="judul-kontak">
+        <h2 id="judul-kontak">Kontak</h2>
+        <dl class="contact-list">
+          <div class="row">
+            <dt>Email</dt>
+            <dd><a href="mailto:andi@example.com">andi@example.com</a></dd>
+          </div>
+          <div class="row">
+            <dt>Lokasi</dt>
+            <dd>Makassar, Indonesia</dd>
+          </div>
+          <div class="row">
+            <dt>Perusahaan</dt>
+            <dd><a href="https://healthsoft.nl" target="_blank" rel="noopener noreferrer">Healthsoft B.V</a></dd>
+          </div>
+        </dl>
+
+        <p class="cta-wrap">
+          <a class="btn" href="mailto:andi@example.com">✉️ Hubungi Saya</a>
+          <a class="btn ghost" href="https://healthsoft.nl" target="_blank" rel="noopener noreferrer">Kunjungi Perusahaan</a>
+        </p>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+    <small>&copy; <span id="year"></span> Andi Irsandi R. • HTML Semantik + Flexbox</small>
+    <a class="to-top" href="#top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">⬆︎ Kembali ke atas</a>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
