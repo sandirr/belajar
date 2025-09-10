@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Presentasi: Bikin Website Profil Pribadi — Andi Irsandi R.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- <link href="./style/output.css" rel="stylesheet"> -->
+  <meta name="description" content="Slide presentasi 90 menit: Bikin Website Profil Pribadi untuk siswa SMA kelas 12. Disusun oleh Andi Irsandi R.">
+  <style>
+    /* Presentasi sederhana berbasis Tailwind */
+    :root { --slide-w: 100vw; --slide-h: 100vh; }
+    .slide { width: var(--slide-w); height: var(--slide-h); }
+    .reveal-enter { opacity: 0; transform: translateY(12px); }
+    .reveal-enter-active { opacity: 1; transform: translateY(0); transition: all .5s ease; }
+
+    /* Print-friendly: 1 slide per halaman */
+    @media print {
+      html, body { height: auto; }
+      .slide { page-break-after: always; height: auto; min-height: 100vh; }
+      #controls, #help, #progress { display: none !important; }
+    }
+
+    /* Code scroll */
+    pre code { white-space: pre; }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 antialiased">
+  <!-- Controls & Progress -->
+  <div id="controls" class="fixed z-50 bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-slate-800/70 backdrop-blur px-3 py-2 rounded-2xl shadow-lg border border-slate-700">
+    <button id="prevBtn" class="px-3 py-1 rounded-xl border border-slate-600 hover:bg-slate-700">← Prev</button>
+    <div class="text-sm tabular-nums"><span id="cur">1</span>/<span id="tot">1</span></div>
+    <button id="nextBtn" class="px-3 py-1 rounded-xl border border-slate-600 hover:bg-slate-700">Next →</button>
+    <button id="gridBtn" title="Overview (O)" class="px-2 py-1 rounded-xl border border-slate-600 hover:bg-slate-700">☰</button>
+  </div>
+  <div id="progress" class="fixed z-40 left-0 right-0 bottom-0 h-1 bg-slate-700">
+    <div id="bar" class="h-1 bg-blue-400" style="width:0%"></div>
+  </div>
+  <div id="help" class="fixed top-4 right-4 text-xs text-slate-300 opacity-80">Panah ← → atau Spasi • O = Overview • P = Toggle tema</div>
+
+  <!-- Slides Wrapper -->
+  <main id="deck" class="relative">
+    <!-- 1. Judul -->
+    <section class="slide grid place-items-center p-8">
+      <div class="max-w-4xl">
+        <div class="mb-6 inline-flex items-center gap-3 text-sm text-blue-300">
+          <span class="px-2 py-1 rounded-full border border-blue-500/30 bg-blue-500/10">Kelas 12 • 90 menit</span>
+          <span class="px-2 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10">Hands-on</span>
+        </div>
+        <h1 class="text-5xl font-extrabold tracking-tight leading-tight">Bikin <span class="text-blue-400">Website Profil Pribadi</span></h1>
+        <p class="mt-4 text-lg text-slate-300">Belajar konsep dasar HTML & CSS untuk membangun halaman profil statis yang rapi dan responsif.</p>
+        <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
+          <div class="flex items-center gap-3">
+            <!-- Avatar inlined as SVG circle -->
+            <svg class="w-12 h-12 rounded-full" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="48" height="48" rx="12" fill="#1e293b"/>
+              <circle cx="24" cy="18" r="8" fill="#60a5fa"/>
+              <path d="M10 40c3-7 9-10 14-10s11 3 14 10H10z" fill="#3b82f6"/>
+            </svg>
+            <div>
+              <div class="font-semibold text-xl">Andi Irsandi R.</div>
+              <div class="text-slate-300">Lulusan Teknik Informatika, UIN Alauddin Makassar</div>
+              <div class="text-slate-300">Software Engineer, Healthsoft B.V — <a class="underline text-blue-300" href="https://healthsoft.nl" target="_blank" rel="noreferrer">healthsoft.nl</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Mengapa Web Penting -->
+    <section class="slide p-10 flex items-center">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 class="text-4xl font-bold mb-4">Kenapa belajar web itu penting?</h2>
+          <ul class="space-y-3 text-lg text-slate-200">
+            <li class="flex items-start gap-3"><span class="mt-1">🌐</span> <span><strong>Internet = panggung karya</strong>. Portofolio online membuka peluang magang, kuliah, beasiswa, dan kerja.</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1">📱</span> <span><strong>Dukungan mobile-first</strong>: mayoritas trafik web global datang dari perangkat mobile.</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1">🧰</span> <span><strong>Skill dasar hampir semua jurusan TIK</strong>: HTML & CSS adalah fondasi sebelum lanjut JavaScript, framework.</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1">🚀</span> <span><strong>Publikasi cepat</strong>: file statis bisa di-host gratis (GitHub Pages, Netlify, Vercel).</span></li>
+          </ul>
+          <p class="mt-6 text-sm text-slate-400">Sumber angka & tren pada slide ini: DataReportal (Digital 2025) & StatCounter (Agustus 2025). Tautan ada di catatan slide.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-6">
+          <!-- Kartu data global -->
+          <div class="p-5 rounded-2xl bg-slate-800/60 border border-slate-700">
+            <div class="text-5xl font-extrabold">5.56B</div>
+            <div class="text-slate-300">Pengguna internet dunia (awal 2025)</div>
+            <div class="mt-2 text-xs text-slate-400">DataReportal Global Overview 2025</div>
+          </div>
+          <div class="p-5 rounded-2xl bg-slate-800/60 border border-slate-700">
+            <div class="text-5xl font-extrabold">~59–60%</div>
+            <div class="text-slate-300">Trafik web via <span class="font-semibold">mobile</span></div>
+            <div class="mt-2 text-xs text-slate-400">StatCounter, Ags 2025</div>
+          </div>
+          <div class="p-5 rounded-2xl bg-slate-800/60 border border-slate-700">
+            <div class="text-5xl font-extrabold">212M</div>
+            <div class="text-slate-300">Pengguna internet Indonesia (2025)</div>
+            <div class="mt-2 text-xs text-slate-400">DataReportal Indonesia 2025</div>
+          </div>
+          <div class="p-5 rounded-2xl bg-slate-800/60 border border-slate-700">
+            <div class="text-5xl font-extrabold">60% : 40%</div>
+            <div class="text-slate-300">Mobile vs Desktop (global)</div>
+            <div class="mt-2 text-xs text-slate-400">StatCounter, Ags 2025</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Tujuan & Harapan -->
+    <section class="slide p-10 grid place-items-center">
+      <div class="max-w-5xl">
+        <h2 class="text-4xl font-bold mb-6">Tujuan & Harapan Sesi</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="p-6 bg-slate-800/60 rounded-2xl border border-slate-700">
+            <h3 class="text-2xl font-semibold mb-2">Tujuan</h3>
+            <ul class="space-y-3 text-lg">
+              <li>Memahami perbedaan <strong>HTML dan CSS</strong>.</li>
+              <li>Mengenal <strong>anatomi dokumen HTML</strong> & penggunaan <strong>CSS</strong>.</li>
+              <li>Bisa membuat <strong>profil pribadi statis</strong> yang rapi & responsif.</li>
+            </ul>
+          </div>
+          <div class="p-6 bg-slate-800/60 rounded-2xl border border-slate-700">
+            <h3 class="text-2xl font-semibold mb-2">Harapan</h3>
+            <ul class="space-y-3 text-lg">
+              <li>Punya <strong>website portofolio</strong> sederhana.</li>
+              <li>Siap lanjut ke <strong>CSS Framework</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. HTML vs CSS vs JS (dengan ilustrasi) -->
+    <section class="slide p-10">
+        <h2 class="text-4xl font-bold">Gambaran: HTML vs CSS vs JavaScript</h2>
+
+        <!-- wrapper utama -->
+        <div class="flex flex-col lg:flex-col gap-6 mt-8">
+            <!-- baris kartu -->
+            <div class="flex flex-col lg:flex-row gap-6">
+            <div class="flex-1 p-6 rounded-2xl bg-slate-800/60 border border-slate-700">
+                <div class="flex items-center gap-3 mb-3">
+                <img src="https://icons.iconarchive.com/icons/cornmanthe3rd/plex/512/Other-html-5-icon.png" width="48" height="48" />
+                <h3 class="text-2xl font-bold">HTML: Struktur/Kerangka</h3>
+                </div>
+                <p class="text-slate-200">Menyusun konten: judul, paragraf, gambar, tautan, tabel, formulir.</p>
+            </div>
+
+            <div class="flex-1 p-6 rounded-2xl bg-slate-800/60 border border-slate-700">
+                <div class="flex items-center gap-3 mb-3">
+                <img src="https://cdn.iconscout.com/icon/free/png-256/free-css3-icon-svg-png-download-1175237.png" width="48" height="48" />
+                <h3 class="text-2xl font-bold">CSS: Tampilan</h3>
+                </div>
+                <p class="text-slate-200">Mengatur warna, ukuran, layout, tipografi, jarak, animasi.</p>
+            </div>
+
+            <div class="flex-1 p-6 rounded-2xl bg-slate-800/60 border border-slate-700">
+                <div class="flex items-center gap-3 mb-3">
+                <img src="https://static.vecteezy.com/system/resources/previews/027/127/463/non_2x/javascript-logo-javascript-icon-transparent-free-png.png" width="48" height="48" />
+                <h3 class="text-2xl font-bold">Javascript: Perilaku</h3>
+                </div>
+                <p class="text-slate-200">Menangani interaksi, logika, data dinamis, dan komunikasi jaringan.</p>
+            </div>
+            </div>
+
+            <!-- gambar full width -->
+            <div class="p-6 rounded-2xl bg-slate-800/60 border border-slate-700">
+            <img src="./image/analogihtmlcss.jpeg" alt="Analogi HTML CSS JavaScript"
+                class="w-full h-auto rounded-xl" />
+            </div>
+        </div>
+        </section>
+
+    <!-- 5. Demo: HTML tanpa CSS vs dengan CSS -->
+    <section class="slide p-10">
+      <h2 class="text-4xl font-bold mb-6">HTML Tanpa CSS vs Dengan CSS</h2>
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="p-4 bg-slate-800/60 rounded-2xl border border-slate-700">
+          <h3 class="font-semibold mb-3">Tanpa CSS</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <img src="./image/nocss.png" />
+          </div>
+        </div>
+        <div class="p-4 bg-slate-800/60 rounded-2xl border border-slate-700">
+          <h3 class="font-semibold mb-3">Dengan CSS</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <img src="./image/withcss.png" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Apa itu Browser? -->
+    <section class="slide p-10 grid place-items-center">
+      <div class="max-w-5xl">
+        <h2 class="text-4xl font-bold mb-6">Apa itu Browser?</h2>
+        <p class="text-lg text-slate-200">Browser adalah aplikasi untuk <em>render</em> halaman web: membaca HTML, menerapkan CSS, menjalankan JavaScript, lalu menampilkan hasilnya.</p>
+        <div class="mt-6 grid md:grid-cols-3 gap-6">
+          <div class="p-5 bg-slate-800/60 border border-slate-700 rounded-2xl">
+            <h3 class="font-semibold mb-1">Peran terhadap HTML</h3>
+            <p class="text-slate-300">Membangun <strong>DOM Tree</strong> dari tag dan atribut.</p>
+          </div>
+          <div class="p-5 bg-slate-800/60 border border-slate-700 rounded-2xl">
+            <h3 class="font-semibold mb-1">Peran terhadap CSS</h3>
+            <p class="text-slate-300">Menyusun <strong>CSSOM</strong> dan menghitung layout (render tree).</p>
+          </div>
+          <div class="p-5 bg-slate-800/60 border border-slate-700 rounded-2xl">
+            <h3 class="font-semibold mb-1">Peran terhadap JS</h3>
+            <p class="text-slate-300">Menjalankan skrip untuk interaksi & manipulasi DOM.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. HTML: Dasar-Dasar -->
+    <section class="slide p-10">
+      <h2 class="text-4xl font-bold mb-6">HTML — Dasar-Dasar</h2>
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div class="space-y-4">
+          <h3 class="text-2xl font-semibold">Apa itu HTML?</h3>
+          <p>HyperText Markup Language — bahasa markah untuk menyusun <em>struktur</em> konten web.</p>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Tag</strong>: penanda seperti <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;img&gt;</code>.</li>
+            <li><strong>Elemen</strong>: <em>tag pembuka</em> + <em>isi</em> + <em>tag penutup</em> (kecuali elemen <em>void</em> seperti <code>&lt;img&gt;</code>).</li>
+            <li><strong>Komentar</strong>: <code>&lt;!-- ini komentar --&gt;</code></li>
+            <li>Browser juga mengenali markah lain: <strong>SVG, MathML</strong> (Selain HTML).</li>
+          </ul>
+        </div>
+        <div>
+          <pre class="overflow-auto rounded-2xl bg-slate-900/70 p-4 text-sm"><code>&lt;!doctype html&gt;
+&lt;html lang="id"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+    &lt;title&gt;Profil Andi&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;&lt;h1&gt;Halo, saya Andi&lt;/h1&gt;&lt;/header&gt;
+    &lt;main&gt;
+      &lt;p&gt;Ini contoh paragraf dengan &lt;strong&gt;teks penting&lt;/strong&gt;.&lt;/p&gt;
+      &lt;img src="avatar.png" alt="Foto Andi" /&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;© 2025&lt;/footer&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Struktur / Anatomi Dokumen HTML -->
+    <section class="slide p-10">
+      <h2 class="text-4xl font-bold mb-6">Struktur Utama (Anatomi HTML)</h2>
+      <div class="grid lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <ul class="space-y-3 text-lg">
+            <li><code>&lt;!doctype html&gt;</code> — memberi tahu browser mode standar.</li>
+            <li><code>&lt;html lang="id"&gt;</code> — akar dokumen & bahasa.</li>
+            <li><code>&lt;head&gt;</code> — metadata: judul, meta, link stylesheet, dsb.</li>
+            <li><code>&lt;body&gt;</code> — konten yang ditampilkan.</li>
+          </ul>
+        </div>
+        <div class="bg-slate-800/60 border border-slate-700 rounded-2xl p-6">
+          <!-- Diagram sederhana -->
+          <svg viewBox="0 0 600 360" class="w-full h-auto">
+            <rect x="10" y="10" width="580" height="340" rx="16" fill="#0f172a" stroke="#334155"/>
+            <text x="300" y="40" fill="#93c5fd" text-anchor="middle" font-size="18" font-family="ui-sans-serif">&lt;html&gt;</text>
+            <rect x="40" y="70" width="520" height="90" rx="10" fill="#111827" stroke="#334155"/>
+            <text x="300" y="100" fill="#a7f3d0" text-anchor="middle" font-size="16">&lt;head&gt; ... &lt;/head&gt;</text>
+            <rect x="40" y="180" width="520" height="150" rx="10" fill="#111827" stroke="#334155"/>
+            <text x="300" y="210" fill="#fde68a" text-anchor="middle" font-size="16">&lt;body&gt; ... &lt;/body&gt;</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. DOM Tree: Parent & Child -->
+    <section class="slide p-10">
+      <h2 class="text-4xl font-bold mb-6">DOM Tree & Istilah Parent/Child</h2>
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <p class="text-lg">Saat HTML dimuat, browser membangun <strong>Document Object Model (DOM)</strong> berupa pohon. Elemen bisa menjadi <em>parent</em> (memiliki anak) dan <em>child</em> (bagian dari parent).</p>
+          <pre class="mt-4 overflow-auto rounded-2xl bg-slate-900/70 p-4 text-sm"><code>&lt;ul id="skills"&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        </div>
+        <div>
+          <pre class="overflow-auto rounded-2xl bg-slate-900/70 p-4 text-sm"><code>skills (ul)   ← parent
+├── li ("HTML")   ← child
+├── li ("CSS")    ← child
+└── li ("JavaScript") ← child</code></pre>
+        </div>
+      </div>
+      <img src="./image/dom-tree.webp" />
+    </section>
+
+    <!-- 10. Tag yang Sering Dipakai -->
+    <section class="slide p-10">
+      <h2 class="text-4xl font-bold mb-6">Tag HTML yang Sering Dipakai</h2>
+      <div class="grid md:grid-cols-3 gap-6 text-slate-200">
+        <div class="bg-slate-800/60 rounded-2xl p-5 border border-slate-700">
+          <h3 class="font-semibold mb-2">Teks & Struktur</h3>
+          <p><code>&lt;h1&gt;..&lt;h6&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;span&gt;</code>, <code>&lt;div&gt;</code>, <code>&lt;br&gt;</code></p>
+        </div>
+        <div class="bg-slate-800/60 rounded-2xl p-5 border border-slate-700">
+          <h3 class="font-semibold mb-2">Tautan & Media</h3>
+          <p><code>&lt;a&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;audio&gt;</code>, <code>&lt;video&gt;</code></p>
+        </div>
+        <div class="bg-slate-800/60 rounded-2xl p-5 border border-slate-700">
+          <h3 class="font-semibold mb-2">Daftar</h3>
+          <p><code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code>, <code>&lt;dl&gt;</code>, <code>&lt;dt&gt;</code>, <code>&lt;dd&gt;</code></p>
+        </div>
+        <div class="bg-slate-800/60 rounded-2xl p-5 border border-slate-700">
+          <h3 class="font-semibold mb-2">Formulir</h3>
+          <p><code>&lt;form&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;label&gt;</code>, <code>&lt;button&gt;</code>, <code>&lt;select&gt;</code>, <code>&lt;textarea&gt;</code></p>
+        </div>
+        <div class="bg-slate-800/60 rounded-2xl p-5 border border-slate-700">
+          <h3 class="font-semibold mb-2">Tabel</h3>
+          <p><code>&lt;table&gt;</code>, <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;tr&gt;</code>, <code>&lt;td&gt;</code>, <code>&lt;th&gt;</code></p>
+        </div>
+        <div class="bg-slate-800/60 rounded-2xl p-5 border border-slate-700">
+          <h3 class="font-semibold mb-2">Semantik</h3>
+          <p><code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. Multimedia Elements -->
+    <section class="slide p-10">
+      <h2 class="text-4xl font-bold mb-6">Multimedia: &lt;img&gt;, &lt;audio&gt;, &lt;video&gt;</h2>
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="bg-slate-800/60 rounded-2xl p-6 border border-slate-700">
+          <h3 class="font-semibold mb-2">Gambar</h3>
+          <pre class="overflow-auto rounded-xl bg-slate-900/70 p-4 text-sm"><code>&lt;img src="foto.jpg" alt="Foto Andi" width="240" /&gt;</code></pre>
+        </div>
+        <div class="bg-slate-800/60 rounded-2xl p-6 border border-slate-700">
+          <h3 class="font-semibold mb-2">Audio</h3>
+          <pre class="overflow-auto rounded-xl bg-slate-900/70 p-4 text-sm"><code>&lt;audio controls&gt;
+  &lt;source src="musik.mp3" type="audio/mpeg" /&gt;
+  Browser Anda tidak mendukung audio.
+&lt;/audio&gt;</code></pre>
+        </div>
+        <div class="bg-slate-800/60 rounded-2xl p-6 border border-slate-700">
+          <h3 class="font-semibold mb-2">Video</h3>
+          <pre class="overflow-auto rounded-xl bg-slate-900/70 p-4 text-sm"><code>&lt;video controls width="320" poster="thumb.jpg"&gt;
+  &lt;source src="demo.mp4" type="video/mp4" /&gt;
+  Browser Anda tidak mendukung video.
+&lt;/video&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. Elemen Semantik -->
+    <section class="slide p-10 grid place-items-center">
+      <div class="max-w-5xl">
+        <h2 class="text-4xl font-bold mb-6">Elemen Semantik</h2>
+        <p class="text-lg">Elemen semantik memberi <em>arti</em> pada struktur (membantu SEO, aksesibilitas, dan konsistensi).</p>
+        <div class="mt-6 grid md:grid-cols-2 gap-6">
+          <div class="bg-slate-800/60 rounded-2xl p-6 border border-slate-700">
+            <p><code>&lt;header&gt;</code> — bagian atas halaman/section, biasanya logo & navigasi.</p>
+            <p><code>&lt;nav&gt;</code> — rak link navigasi.</p>
+            <p><code>&lt;main&gt;</code> — konten utama tunggal per halaman.</p>
+          </div>
+          <div class="bg-slate-800/60 rounded-2xl p-6 border border-slate-700">
+            <p><code>&lt;section&gt;</code> — kelompok topik/tema.</p>
+            <p><code>&lt;article&gt;</code> — konten mandiri (post, card berita).</p>
+            <p><code>&lt;footer&gt;</code> — informasi penutup/kaki halaman.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. Atribut HTML -->
+    <section class="slide p-10">
+      <h2 class="text-4xl font-bold mb-6">Atribut HTML</h2>
+      <div class="grid lg:grid-cols-2 gap-6 items-start">
+        <div>
+          <ul class="list-disc list-inside space-y-2 text-lg">
+            <li><code>class</code>, <code>id</code> — styling & selektor.</li>
+            <li><code>src</code>, <code>href</code>, <code>alt</code>, <code>title</code>.</li>
+            <li><code>controls</code>, <code>autoplay</code>, <code>loop</code>, <code>target</code>.</li>
+            <li><code>aria-*</code> — aksesibilitas.</li>
+          </ul>
+        </div>
+        <div>
+          <pre class="overflow-auto rounded-2xl bg-slate-900/70 p-4 text-sm"><code>&lt;a class="btn" href="https://healthsoft.nl" target="_blank" title="Kunjungi"&gt;
+  Website perusahaan saya
+&lt;/a&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. CSS: Pengantar -->
+    <section class="slide p-10">
+      <h2 class="text-4xl font-bold mb-6">CSS — Cascading Style Sheets</h2>
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div>
+          <p class="text-lg">CSS mengatur <strong>presentasi</strong> dokumen: warna, ukuran, layout, tipografi, jarak, bayangan, animasi, responsif. Catatan: <em>perilaku</em> (logika) dikerjakan oleh JavaScript.</p>
+          <h3 class="text-2xl font-semibold mt-6">Struktur Aturan</h3>
+          <pre class="overflow-auto rounded-2xl bg-slate-900/70 p-4 text-sm"><code>selektor { property: value; }
+.card { background: white; border-radius: 16px; padding: 24px; }</code></pre>
+          <h3 class="text-2xl font-semibold mt-6">3 Cara Menambahkan CSS</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li><strong>Inline</strong>: <code>&lt;h1 style="color: red"&gt;</code></li>
+            <li><strong>Internal</strong>: <code>&lt;style&gt; ... &lt;/style&gt;</code> di <code>&lt;head&gt;</code></li>
+            <li><strong>External</strong>: <code>&lt;link rel="stylesheet" href="style.css"&gt;</code></li>
+          </ol>
+        </div>
+        <div>
+          <h3 class="text-2xl font-semibold mb-2">Selektor CSS</h3>
+          <ul class="space-y-2">
+            <li>Tipe: <code>p</code>, <code>img</code></li>
+            <li>Kelas: <code>.card</code></li>
+            <li>ID: <code>#hero</code></li>
+            <li>Relasi: <code>nav a</code> (descendant), <code>ul &gt; li</code> (child)</li>
+            <li>Atribut: <code>a[target="_blank"]</code></li>
+            <li>Pseudo-class: <code>a:hover</code>, <code>input:focus</code></li>
+            <li>Pseudo-element: <code>p::first-line</code></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. Properti CSS yang Sering Dipakai -->
+    <section class="slide p-10">
+      <h2 class="text-4xl font-bold mb-6">Properti CSS Populer</h2>
+      <div class="grid md:grid-cols-3 gap-6 text-slate-200">
+        <div class="bg-slate-800/60 rounded-2xl p-5 border border-slate-700">
+          <h3 class="font-semibold mb-2">Teks & Warna</h3>
+          <p><code>color</code>, <code>background</code>, <code>font-family</code>, <code>font-size</code>, <code>line-height</code>, <code>text-align</code></p>
+        </div>
+        <div class="bg-slate-800/60 rounded-2xl p-5 border border-slate-700">
+          <h3 class="font-semibold mb-2">Box Model</h3>
+          <p><code>width</code>, <code>height</code>, <code>margin</code>, <code>padding</code>, <code>border</code>, <code>border-radius</code>, <code>box-shadow</code></p>
+        </div>
+        <div class="bg-slate-800/60 rounded-2xl p-5 border border-slate-700">
+          <h3 class="font-semibold mb-2">Layout</h3>
+          <p><code>display</code>, <code>position</code>, <code>flex</code>, <code>grid</code>, <code>gap</code>, <code>z-index</code></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16. Flexbox -->
+    <section class="slide p-10">
+      <h2 class="text-4xl font-bold mb-6">Flexbox — Layout Fleksibel</h2>
+      <div class="grid lg:grid-cols-2 gap-8 items-start">
+        <div>
+          <ul class="list-disc list-inside space-y-2 text-lg">
+            <li>Aktifkan: <code>display: flex</code></li>
+            <li>Arah: <code>flex-direction</code> (row/column)</li>
+            <li>Sejajar utama: <code>justify-content</code></li>
+            <li>Sejajar silang: <code>align-items</code></li>
+            <li>Jarak: <code>gap</code></li>
+            <li>Item: <code>flex</code>, <code>order</code>, <code>align-self</code></li>
+          </ul>
+        </div>
+        <div class="bg-slate-800/60 rounded-2xl p-6 border border-slate-700">
+          <!-- Demo Flexbox dengan Tailwind -->
+          <div class="text-sm mb-3 text-slate-300">Contoh (Tailwind): <code>flex justify-between items-center gap-3</code></div>
+          <div class="flex justify-between items-center gap-3">
+            <div class="p-4 bg-emerald-500/20 border border-emerald-500/40 rounded-xl">A</div>
+            <div class="p-4 bg-blue-500/20 border border-blue-500/40 rounded-xl">B</div>
+            <div class="p-4 bg-pink-500/20 border border-pink-500/40 rounded-xl">C</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 17. Penutup: Bootstrap vs Tailwind -->
+    <section class="slide p-10 grid place-items-center">
+      <div class="max-w-5xl">
+        <h2 class="text-4xl font-bold mb-6">Bootstrap vs Tailwind — Cara Cepat Pakai CSS</h2>
+        <div class="grid lg:grid-cols-2 gap-8">
+          <div class="bg-slate-800/60 rounded-2xl p-6 border border-slate-700">
+            <h3 class="text-2xl font-semibold mb-2">Bootstrap</h3>
+            <p class="text-slate-200">Framework komponen CSS (dengan JavaScript) yang menyediakan <em>komponen siap pakai</em> seperti navbar, kartu, modal, dan grid.</p>
+            <ul class="list-disc list-inside mt-2 space-y-2">
+              <li>Pakai <strong>class</strong> yang sudah disediakan (mis. <code>btn btn-primary</code>).</li>
+              <li>Cocok untuk cepat jadi dengan gaya konsisten.</li>
+            </ul>
+          </div>
+          <div class="bg-slate-800/60 rounded-2xl p-6 border border-slate-700">
+            <h3 class="text-2xl font-semibold mb-2">Tailwind CSS</h3>
+            <p class="text-slate-200">Framework CSS <em>utility-first</em> — fokus pada kelas utilitas kecil (mis. <code>p-4</code>, <code>text-blue-500</code>, <code>flex</code>) untuk menyusun desain fleksibel tanpa menulis CSS kustom panjang.</p>
+            <ul class="list-disc list-inside mt-2 space-y-2">
+              <li>Kendalikan desain di markup dengan <strong>class utility</strong>.</li>
+              <li>Skala besar, konsisten, dan mudah dipakai untuk desain responsif.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-6 p-4 rounded-2xl bg-slate-800/60 border border-slate-700">
+          <p class="font-semibold">Intinya:</p>
+          <p class="text-slate-200">Keduanya adalah <strong>framework CSS</strong>. Kita bisa membangun cepat dengan <em>class name</em> yang sudah disediakan — pilih Bootstrap (komponen siap pakai) atau Tailwind (utility-first) sesuai selera & kebutuhan.</p>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-3 text-sm">
+          <a class="underline text-blue-300" href="https://getbootstrap.com/" target="_blank" rel="noreferrer">getbootstrap.com</a>
+          <a class="underline text-blue-300" href="https://tailwindcss.com/docs/utility-first" target="_blank" rel="noreferrer">tailwindcss.com</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catatan Sumber (non-slide) -->
+    <section class="slide p-10">
+      <h2 class="text-3xl font-bold mb-4">Catatan Sumber Data</h2>
+      <ul class="list-disc list-inside space-y-2 text-slate-200">
+        <li>DataReportal: <a class="underline text-blue-300" href="https://datareportal.com/reports/digital-2025-global-overview-report" target="_blank" rel="noreferrer">Digital 2025 Global Overview</a> & <a class="underline text-blue-300" href="https://datareportal.com/reports/digital-2025-indonesia" target="_blank" rel="noreferrer">Indonesia 2025</a></li>
+        <li>StatCounter: <a class="underline text-blue-300" href="https://gs.statcounter.com/platform-market-share/desktop-mobile/worldwide/" target="_blank" rel="noreferrer">Desktop vs Mobile (Worldwide)</a></li>
+      </ul>
+      <p class="mt-4 text-slate-400 text-sm">Angka diambil pada Agustus 2025 / awal 2025 untuk konteks trend.</p>
+    </section>
+  </main>
+
+  <!-- Overview Grid -->
+  <div id="overview" class="hidden fixed inset-0 bg-slate-900/95 z-[60] p-8 overflow-auto">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-xl font-semibold">Overview</h3>
+        <button id="closeGrid" class="px-3 py-1 rounded-xl border border-slate-600">Tutup</button>
+      </div>
+      <div id="thumbs" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
+    </div>
+  </div>
+
+  <script>
+        (() => {
+        const $ = (s) => document.querySelector(s);
+        const $$ = (s) => Array.from(document.querySelectorAll(s));
+
+        const slides   = $$('.slide');
+        const curEl    = $('#cur');
+        const totEl    = $('#tot');
+        const bar      = $('#bar');
+        const prevBtn  = $('#prevBtn');
+        const nextBtn  = $('#nextBtn');
+        const gridBtn  = $('#gridBtn');
+        const overview = $('#overview');
+        const thumbs   = $('#thumbs');
+        const closeGrid= $('#closeGrid');
+
+        let idx = 0;
+        totEl.textContent = String(slides.length);
+
+        function applyHidden() {
+            slides.forEach((s, k) => s.classList.toggle('hidden', k !== idx));
+        }
+
+        function show(i) {
+            idx = Math.max(0, Math.min(slides.length - 1, i));
+            applyHidden();
+
+            curEl.textContent = String(idx + 1);
+            bar.style.width = (((idx + 1) / slides.length) * 100).toFixed(2) + '%';
+
+            const slide = slides[idx];
+            slide.classList.add('reveal-enter');
+            requestAnimationFrame(() => slide.classList.add('reveal-enter-active'));
+            setTimeout(() => slide.classList.remove('reveal-enter', 'reveal-enter-active'), 500);
+        }
+
+        function next() { if (idx < slides.length - 1) show(idx + 1); }
+        function prev() { if (idx > 0) show(idx - 1); }
+
+        prevBtn?.addEventListener('click', prev);
+        nextBtn?.addEventListener('click', next);
+
+        function toggleOverview() {
+            overview.classList.toggle('hidden');
+            const opened = !overview.classList.contains('hidden');
+            document.documentElement.classList.toggle('overflow-hidden', opened);
+            document.body.classList.toggle('overflow-hidden', opened);
+        }
+
+        gridBtn?.addEventListener('click', toggleOverview);
+        closeGrid?.addEventListener('click', toggleOverview);
+
+        // Keyboard: cegah halaman scroll saat pakai Space/PageUp/PageDown
+        document.addEventListener('keydown', (e) => {
+            if (overview.classList.contains('hidden')) {
+            if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.code === 'Space' || e.key === ' ') { e.preventDefault(); next(); }
+            if (e.key === 'ArrowLeft'  || e.key === 'PageUp') { e.preventDefault(); prev(); }
+            if (e.key?.toLowerCase() === 'o') { e.preventDefault(); toggleOverview(); }
+            if (e.key?.toLowerCase() === 'p') { e.preventDefault(); document.body.classList.toggle('bg-white'); }
+            } else {
+            if (e.key === 'Escape' || e.key?.toLowerCase() === 'o') { e.preventDefault(); toggleOverview(); }
+            }
+        }, { passive: false });
+
+        // Build thumbnails sekali
+        thumbs.innerHTML = '';
+        slides.forEach((s, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'text-left p-4 rounded-xl bg-slate-800/60 border border-slate-700 hover:bg-slate-700/60 w-full';
+            const title = s.querySelector('h1, h2, h3');
+            btn.innerHTML = `<div class="text-sm text-slate-300 mb-1">Slide ${i+1}</div><div class="font-semibold">${title ? title.textContent : '—'}</div>`;
+            btn.addEventListener('click', () => { show(i); toggleOverview(); });
+            thumbs.appendChild(btn);
+        });
+
+        // Mulai dari slide 1
+        show(0);
+        })();
+    </script>
+</body>
+</html>
